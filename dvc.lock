@@ -1,0 +1,105 @@
+schema: '2.0'
+stages:
+  transform:
+    cmd: python src/stages/transform.py --config=params.yaml
+    deps:
+    - path: src/pipelines/transform.py
+      hash: md5
+      md5: 7c7f76fc5bde757083808a773ce170f3
+      size: 3928
+    - path: src/stages/transform.py
+      hash: md5
+      md5: 504e2e1f302cd6e0cb636bd4edeed49d
+      size: 1448
+    params:
+      params.yaml:
+        base:
+          project: road_seg
+          random_state: 42
+        transform:
+          raw_dataset_dir: src/data
+          raw_dataset_fname: raw_dataset
+          train_dir_path: train
+          test_dir_path: test
+          test_idx:
+          - 1
+          - 16
+          - 17
+          - 18
+          - 19
+          - 20
+          patch_size: 256
+    outs:
+    - path: src/data/test/img
+      hash: md5
+      md5: eae05c574c7b495f99f63aa02f7a83e6.dir
+      size: 185775094
+      nfiles: 1380
+    - path: src/data/test/mask
+      hash: md5
+      md5: 944b887701d13af6e13774514dd465cf.dir
+      size: 362225160
+      nfiles: 1380
+    - path: src/data/train/img
+      hash: md5
+      md5: 531791941f750a744cae672e00fef089.dir
+      size: 211544774
+      nfiles: 1622
+    - path: src/data/train/mask
+      hash: md5
+      md5: ff0662b1c75ad3f5e799ec79b9b1280e.dir
+      size: 425745804
+      nfiles: 1622
+  split:
+    cmd: python src/stages/split.py --config=params.yaml
+    deps:
+    - path: src/data/train/img
+      hash: md5
+      md5: 684c10f9070ec65c2c7740fc6306855f.dir
+      size: 169211550
+      nfiles: 1298
+    - path: src/data/train/mask
+      hash: md5
+      md5: 603cfe01693b6677514cb32aa1c9f4fa.dir
+      size: 340701636
+      nfiles: 1298
+    - path: src/pipelines/split.py
+      hash: md5
+      md5: ffd8031cacf3d813747bca236cf3e65f
+      size: 1377
+    - path: src/stages/split.py
+      hash: md5
+      md5: 6cd73861b11b56a203984188c47a13ec
+      size: 1262
+    params:
+      params.yaml:
+        base:
+          project: road_seg
+          random_state: 42
+        split:
+          prc_valid: 0.2
+          valid_dir_path: valid
+        transform:
+          raw_dataset_dir: src/data
+          raw_dataset_fname: raw_dataset
+          train_dir_path: train
+          test_dir_path: test
+          test_idx:
+          - 1
+          - 16
+          - 17
+          - 18
+          - 19
+          - 20
+          patch_size: 256
+    outs:
+    - path: src/data/valid/img
+      hash: md5
+      md5: 29d401a6d08a9676cc8c59bb8938dba3.dir
+      size: 42333224
+      nfiles: 324
+    - path: src/data/valid/mask
+      hash: md5
+      md5: ce310739c58ea2c88dbf5e7f3255f729.dir
+      size: 85044168
+      nfiles: 324
