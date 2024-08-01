@@ -28,6 +28,7 @@ stages:
     outs:
     - src/data/valid/img
     - src/data/valid/mask
+
   train:
     cmd: python src/stages/train.py --config=params.yaml
     deps:
@@ -62,11 +63,10 @@ stages:
     metrics:
     - evaluation/metrics.json:
         cache: false
-        
+
 metrics:
 - dvclive/metrics.json
 plots:
 - dvclive/plots/metrics:
     x: step
-
     
