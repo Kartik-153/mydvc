@@ -64,9 +64,3 @@ stages:
     - evaluation/metrics.json:
         cache: false
 
-metrics:
-- dvclive/metrics.json
-plots:
-- dvclive/plots/metrics:
-    x: step
-    
