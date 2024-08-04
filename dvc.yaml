@@ -1,5 +1,4 @@
 stages:
-
   transform:
     cmd: python src/stages/transform.py --config=params.yaml
     deps:
@@ -64,3 +63,8 @@ stages:
     - evaluation/metrics.json:
         cache: false
 
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step
