@@ -1,2 +1,3 @@
-dvcdemo_accessKeys.csv
+dvcdemo_accessKeys*.csv
 .venv
+__pycache__
