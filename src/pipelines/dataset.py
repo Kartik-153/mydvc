@@ -54,8 +54,8 @@ class RoadDataset(Dataset):
         return len(self.items)
 
     def __getitem__(self, ix: int) -> tuple[np.ndarray, np.ndarray]:
-        img = np.array(Image.open(f"{self.path}/img/{self.items[ix]}").convert("RGB"))
-        mask = np.array(Image.open(f"{self.path}/mask/{self.items[ix]}").convert("L"))
+        img = np.array(Image.open(f"{self.path}/{self.items[ix]}").convert("RGB"))
+        mask = np.array(Image.open(f"{self.path}/{self.items[ix]}").convert("L"))
 
         if transforms is not None:
             augmentations = self.transform(image=img, mask=mask)
